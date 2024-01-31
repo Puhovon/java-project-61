@@ -1,7 +1,8 @@
 package hexlet.code.games;
 
 import java.util.Scanner;
-import hexlet.code.*;
+import hexlet.code.Cli;
+import hexlet.code.RandomNum;
 
 public class Even {
     public static void even() {
@@ -14,10 +15,10 @@ public class Even {
         System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
         final int range = 100;
 
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             int number = RandomNum.getRandomNum();
             System.out.println(number);
-            if(((number % 2 == 0) && (response.nextLine().equals("yes")))
+            if (((number % 2 == 0) && (response.nextLine().equals("yes")))
                     || (number % 2 != 0) && (response.nextLine().equals("no"))) {
                 System.out.println("Correct!");
             } else {

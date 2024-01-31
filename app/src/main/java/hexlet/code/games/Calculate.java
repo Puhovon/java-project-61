@@ -1,7 +1,8 @@
 package hexlet.code.games;
 
 import java.util.Scanner;
-import hexlet.code.*;
+import hexlet.code.Cli;
+import hexlet.code.RandomNum;
 
 public class Calculate {
     public static void calculate() {
@@ -21,9 +22,9 @@ public class Calculate {
             if (charIndex == 1) {
                 System.out.println(number1 + " + " + number2 + "?");
                 int answer =  Integer.parseInt(response.nextLine());
-                if (number1 + number2 == answer)
+                if (number1 + number2 == answer) {
                     System.out.println("Correct!");
-                else {
+                } else {
                     System.out.println("Let's try again, " + name + "!");
                     return;
                 }
