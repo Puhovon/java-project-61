@@ -1,8 +1,7 @@
 package hexlet.code.games;
 
 import java.util.Scanner;
-import hexlet.code.Cli;
-import java.lang.Math;
+import hexlet.code.*;
 
 public class Even {
     public static void even() {
@@ -16,7 +15,7 @@ public class Even {
         final int range = 100;
 
         for(int i = 0; i < 3; i++) {
-            int number = (int)(Math.random() * range) + 1;
+            int number = RandomNum.getRandomNum();
             System.out.println(number);
             if(((number % 2 == 0) && (response.nextLine().equals("yes")))
                     || (number % 2 != 0) && (response.nextLine().equals("no"))) {
