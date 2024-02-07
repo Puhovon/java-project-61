@@ -17,7 +17,7 @@ public class Even {
 
         for (int i = 0; i < 3; i++) {
             int number = RandomNum.getRandomNum();
-            System.out.println(number);
+            System.out.println("Question: " + number);
             if (((number % 2 == 0) && (response.nextLine().equals("yes")))
                     || (number % 2 != 0) && (response.nextLine().equals("no"))) {
                 System.out.println("Correct!");

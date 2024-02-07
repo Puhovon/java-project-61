@@ -20,7 +20,7 @@ public class Calculate {
             int number2 = RandomNum.getRandomNum();
 
             if (charIndex == 1) {
-                System.out.println(number1 + " + " + number2 + "?");
+                System.out.println("Question: " + number1 + " + " + number2);
                 int answer =  Integer.parseInt(response.nextLine());
                 if (number1 + number2 == answer) {
                     System.out.println("Correct!");
