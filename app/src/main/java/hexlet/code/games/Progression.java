@@ -19,7 +19,12 @@ public class Progression {
             int startProgression = RandomNum.getRandomNum(20);
             generateProgressionString(progress, startProgression);
             System.out.println(generateProgressionString(progress, startProgression));
-            if (Integer.parseInt(response.nextLine()) == progress) {
+            var answer = parseIntOrNull(response.nextLine());
+            if(answer == null) {
+                System.out.println("Let's try again, " + name + "!");
+                return;
+            }
+            if (answer == progress) {
                 System.out.println("Correct!");
             } else {
                 System.out.println("Let's try again, " + name + "!");
@@ -27,6 +32,14 @@ public class Progression {
             }
         }
         System.out.println("Congratulations, " + name + "!");
+    }
+
+    public static Integer parseIntOrNull(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
     public static String generateProgressionString(int progression, int start) {
