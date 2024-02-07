@@ -2,7 +2,11 @@ package hexlet.code;
 
 import java.util.Scanner;
 
-import hexlet.code.games.*;
+import hexlet.code.games.Calculate;
+import hexlet.code.games.Even;
+import hexlet.code.games.Node;
+import hexlet.code.games.Prime;
+import hexlet.code.games.Progression;
 
 public class App {
 

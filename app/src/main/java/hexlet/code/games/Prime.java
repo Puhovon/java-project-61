@@ -20,11 +20,10 @@ public class Prime {
             System.out.println("Question: " + number);
             String answer = response.nextLine();
             System.out.println(number + " " + isPrime);
-            if((answer.equalsIgnoreCase("yes") && isPrime) ||
-                    (answer.equalsIgnoreCase("no") && !isPrime)) {
+            if ((answer.equalsIgnoreCase("yes") && isPrime)
+                    || (answer.equalsIgnoreCase("no") && !isPrime)) {
                 System.out.println("Correct");
-            }
-            else {
+            } else {
                 System.out.println("Let's try again, " + name + "!");
                 return;
             }
@@ -33,9 +32,13 @@ public class Prime {
     }
 
     private static boolean checkIsPrime(int number) {
-        if(number <= 1) return false;
-        for(int i = 2; i <= Math.sqrt(number); i++) {
-            if(number % i == 0) return false;
+        if (number <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
         }
         return true;
     }

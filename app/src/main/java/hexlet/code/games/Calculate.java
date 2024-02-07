@@ -21,7 +21,7 @@ public class Calculate {
 
             if (charIndex == 1) {
                 System.out.println("Question: " + number1 + " + " + number2);
-                int answer =  Integer.parseInt(response.nextLine());
+                int answer = Integer.parseInt(response.nextLine());
                 if (number1 + number2 == answer) {
                     System.out.println("Correct!");
                 } else {
@@ -29,18 +29,18 @@ public class Calculate {
                     return;
                 }
 
-            } else if(charIndex == 2) {
+            } else if (charIndex == 2) {
                 System.out.println("Question: " + number1 + " - " + number2 + "?");
-                int answer =  Integer.parseInt(response.nextLine());
+                int answer = Integer.parseInt(response.nextLine());
                 if (number1 - number2 == answer) {
                     System.out.println("Correct!");
                 } else {
                     System.out.println("Let's try again, " + name + "!");
                     return;
                 }
-            } else if(charIndex == 3) {
+            } else if (charIndex == 3) {
                 System.out.println("Question: " + number1 + " * " + number2 + "?");
-                int answer =  Integer.parseInt(response.nextLine());
+                int answer = Integer.parseInt(response.nextLine());
                 if (number1 * number2 == answer) {
                     System.out.println("Correct!");
                 } else {

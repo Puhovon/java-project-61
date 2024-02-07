@@ -20,7 +20,7 @@ public class Progression {
             generateProgressionString(progress, startProgression);
             System.out.println(generateProgressionString(progress, startProgression));
             var answer = parseIntOrNull(response.nextLine());
-            if(answer == null) {
+            if (answer == null) {
                 System.out.println("Let's try again, " + name + "!");
                 return;
             }
@@ -46,8 +46,11 @@ public class Progression {
         int censored = RandomNum.getRandomNum(9);
         StringBuilder string = new StringBuilder("Question: ");
         for (int j = 0; j < 10; j++) {
-            if(censored == j) string.append("..");
-            else string.append(start);
+            if (censored == j) {
+                string.append("..");
+            } else {
+                string.append(start);
+            }
             string.append(" ");
             start += progression;
         }
