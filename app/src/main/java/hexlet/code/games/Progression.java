@@ -19,6 +19,7 @@ public class Progression {
             int startProgression = RandomNum.getRandomNum(20);
             generateProgressionString(progress, startProgression);
             System.out.println(generateProgressionString(progress, startProgression));
+            System.out.print("Your answer: ");
             var answer = parseIntOrNull(response.nextLine());
             if (answer == null) {
                 System.out.println("Let's try again, " + name + "!");
@@ -27,7 +28,9 @@ public class Progression {
             if (answer == progress) {
                 System.out.println("Correct!");
             } else {
+                System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was" + "'" + progress + "'");
                 System.out.println("Let's try again, " + name + "!");
+
                 return;
             }
         }
