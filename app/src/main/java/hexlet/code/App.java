@@ -26,6 +26,7 @@ public class App {
 
         Scanner console = new Scanner(System.in);
 
+
         switch (console.nextLine()) {
             case greet:
                 Cli.getByName();
