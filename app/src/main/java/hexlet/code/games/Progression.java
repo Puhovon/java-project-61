@@ -13,6 +13,7 @@ public class Progression {
 
     public static void game(String name) {
         Scanner response = new Scanner(System.in);
+        System.out.println("What number is missing in the progression?");
         for (int i = 0; i < 3; i++) {
             int progress = RandomNum.getRandomNum(10);
             int startProgression = RandomNum.getRandomNum(20);
