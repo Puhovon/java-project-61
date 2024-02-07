@@ -29,7 +29,16 @@ public class Calculate {
                     return;
                 }
 
-            } else {
+            } else if(charIndex == 2) {
+                System.out.println(number1 + " - " + number2 + "?");
+                int answer =  Integer.parseInt(response.nextLine());
+                if (number1 - number2 == answer) {
+                    System.out.println("Correct!");
+                } else {
+                    System.out.println("Let's try again, " + name + "!");
+                    return;
+                }
+            } else if(charIndex == 3) {
                 System.out.println(number1 + " * " + number2 + "?");
                 int answer =  Integer.parseInt(response.nextLine());
                 if (number1 * number2 == answer) {
@@ -38,7 +47,6 @@ public class Calculate {
                     System.out.println("Let's try again, " + name + "!");
                     return;
                 }
-
             }
         }
         System.out.println("Congratulations, " + name + "!");
