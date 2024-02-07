@@ -28,7 +28,7 @@ public class Progression {
             if (answer == progress) {
                 System.out.println("Correct!");
             } else {
-                System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was" + "'" + progress + "'");
+                System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was " + "'" + progress + "'");
                 System.out.println("Let's try again, " + name + "!");
 
                 return;
