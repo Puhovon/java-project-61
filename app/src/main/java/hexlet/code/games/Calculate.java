@@ -30,7 +30,7 @@ public class Calculate {
                 }
 
             } else if(charIndex == 2) {
-                System.out.println(number1 + " - " + number2 + "?");
+                System.out.println("Question: " + number1 + " - " + number2 + "?");
                 int answer =  Integer.parseInt(response.nextLine());
                 if (number1 - number2 == answer) {
                     System.out.println("Correct!");
@@ -39,7 +39,7 @@ public class Calculate {
                     return;
                 }
             } else if(charIndex == 3) {
-                System.out.println(number1 + " * " + number2 + "?");
+                System.out.println("Question: " + number1 + " * " + number2 + "?");
                 int answer =  Integer.parseInt(response.nextLine());
                 if (number1 * number2 == answer) {
                     System.out.println("Correct!");
