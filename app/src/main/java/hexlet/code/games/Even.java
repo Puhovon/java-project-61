@@ -1,32 +1,28 @@
 package hexlet.code.games;
 
-import java.util.Scanner;
-import hexlet.code.Cli;
-import hexlet.code.RandomNum;
+import hexlet.code.Engine;
 
 public class Even {
-    public static void even() {
-        final String name = Cli.getByName();
-        game(name);
-    }
-
-    private static void game(String name) {
-        Scanner response = new Scanner(System.in);
-        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
-        final int range = 100;
-
-        for (int i = 0; i < 3; i++) {
-            int number = RandomNum.getRandomNum();
-            System.out.println("Question: " + number);
-            if (((number % 2 == 0) && (response.nextLine().equals("yes")))
-                    || (number % 2 != 0) && (response.nextLine().equals("no"))) {
-                System.out.println("Correct!");
-            } else {
-                System.out.println("Let's try again, " + name + "!");
-                return;
-            }
+    private static final int QUESTIONS_COUNT = 3;
+    private static final int MAX_RANDOM_NUMBER = 100;
+    private static final String TIP = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+    private static String[][] questionsAnswers = new String[QUESTIONS_COUNT][2];
+    /*  questionsAnswers[][0] - questions;
+        questionsAnswers[][1] - correct answers */
+    private static final int QUESTION_ROW_NUMBER = 0;
+    private static final int ANSWER_ROW_NUMBER = 1;
+    public static void launch() {
+        for (int i = 0; i < QUESTIONS_COUNT; i++) {
+            int questionNumber = (int) (Math.random() * MAX_RANDOM_NUMBER);
+            questionsAnswers[i][QUESTION_ROW_NUMBER] = String.valueOf(questionNumber);
+            questionsAnswers[i][ANSWER_ROW_NUMBER] = (isEven(questionNumber)) ? "yes" : "no";
         }
-        System.out.println("Congratulations, " + name + "!");
+        Engine.startGame(TIP, questionsAnswers);
     }
+
+    private static boolean isEven(int currentNumber) {
+        return currentNumber % 2 == 0;
+    }
+
 }
 

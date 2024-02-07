@@ -1,55 +1,34 @@
 package hexlet.code.games;
 
-import java.util.Scanner;
-import hexlet.code.Cli;
-import hexlet.code.RandomNum;
+import hexlet.code.Engine;
 
 public class Calculate {
-    public static void calculate() {
-        final String name = Cli.getByName();
-        game(name);
-    }
-
-    private static void game(String name) {
-        System.out.println("What is the result of the expression?");
-        Scanner response = new Scanner(System.in);
-
-        for (int i = 0; i < 3; i++) {
-            int charIndex = (RandomNum.getRandomNum(2));
-            int number1 = RandomNum.getRandomNum();
-            int number2 = RandomNum.getRandomNum();
-
-            if (charIndex == 1) {
-                System.out.println("Question: " + number1 + " + " + number2);
-                int answer = Integer.parseInt(response.nextLine());
-                if (number1 + number2 == answer) {
-                    System.out.println("Correct!");
-                } else {
-                    System.out.println("Let's try again, " + name + "!");
-                    return;
-                }
-
-            } else if (charIndex == 2) {
-                System.out.println("Question: " + number1 + " - " + number2 + "?");
-                int answer = Integer.parseInt(response.nextLine());
-                if (number1 - number2 == answer) {
-                    System.out.println("Correct!");
-                } else {
-                    System.out.println("Let's try again, " + name + "!");
-                    return;
-                }
-            } else if (charIndex == 3) {
-                System.out.println("Question: " + number1 + " * " + number2 + "?");
-                int answer = Integer.parseInt(response.nextLine());
-                if (number1 * number2 == answer) {
-                    System.out.println("Correct!");
-                } else {
-                    System.out.println("Let's try again, " + name + "!");
-                    return;
-                }
+    private static final int QUESTIONS_COUNT = 3;
+    private static final int MAX_RANDOM_NUMBER = 100;
+    private static final String TIP = "What is the result of the expression?";
+    private static String[][] questionsAnswers = new String[QUESTIONS_COUNT][2];
+    private static final int QUESTION_ROW_NUMBER = 0;
+    private static final int ANSWER_ROW_NUMBER = 1;
+    private static final char[] MATH_OPERATORS = {'+', '-', '*'};
+    public static void launch() {
+        for (int i = 0; i < QUESTIONS_COUNT; i++) {
+            int firstNum = (int) (Math.random() * MAX_RANDOM_NUMBER + 1);
+            int secondNum = (int) (Math.random() * MAX_RANDOM_NUMBER + 1);
+            int randomIndexOperator = (int) (Math.random() * MATH_OPERATORS.length);
+            char operator = MATH_OPERATORS[randomIndexOperator];
+            switch (operator) {
+                case '+':
+                    questionsAnswers[i][ANSWER_ROW_NUMBER] = String.valueOf(firstNum + secondNum);
+                    break;
+                case '-':
+                    questionsAnswers[i][ANSWER_ROW_NUMBER] = String.valueOf(firstNum - secondNum);
+                    break;
+                default:
+                    questionsAnswers[i][ANSWER_ROW_NUMBER] = String.valueOf(firstNum * secondNum);
+                    break;
             }
+            questionsAnswers[i][QUESTION_ROW_NUMBER] = firstNum + " " + operator + " " + secondNum;
         }
-        System.out.println("Congratulations, " + name + "!");
-
+        Engine.startGame(TIP, questionsAnswers);
     }
 }

@@ -1,42 +1,30 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
-import hexlet.code.RandomNum;
+import hexlet.code.Engine;
 
-import java.util.Scanner;
 
 public class Prime {
-    public static void prime() {
-        String name = Cli.getByName();
-        game(name);
-    }
-
-    private static void game(String name) {
-        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
-        Scanner response = new Scanner(System.in);
-        for (int i = 0; i < 3; i++) {
-            int number = RandomNum.getRandomNum();
-            boolean isPrime = checkIsPrime(number);
-            System.out.println("Question: " + number);
-            String answer = response.nextLine();
-            System.out.println(number + " " + isPrime);
-            if ((answer.equalsIgnoreCase("yes") && isPrime)
-                    || (answer.equalsIgnoreCase("no") && !isPrime)) {
-                System.out.println("Correct");
-            } else {
-                System.out.println("Let's try again, " + name + "!");
-                return;
-            }
+    private static final int QUESTIONS_COUNT = 3;
+    private static final int MAX_RANDOM_NUMBER = 100;
+    private static final String TIP = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+    private static String[][] questionsAnswers = new String[QUESTIONS_COUNT][2];
+    private static final int QUESTION_ROW_NUMBER = 0;
+    private static final int ANSWER_ROW_NUMBER = 1;
+    public static void launch() {
+        for (int i = 0; i < QUESTIONS_COUNT; i++) {
+            int questionNumber = (int) (Math.random() * MAX_RANDOM_NUMBER);
+            questionsAnswers[i][QUESTION_ROW_NUMBER] = String.valueOf(questionNumber);
+            questionsAnswers[i][ANSWER_ROW_NUMBER] = (isPrime(questionNumber)) ? "yes" : "no";
         }
-        System.out.println("Congratulations, " + name + "!");
+        Engine.startGame(TIP, questionsAnswers);
     }
 
-    private static boolean checkIsPrime(int number) {
-        if (number <= 1) {
+    private static boolean isPrime(int currentNumber) {
+        if (currentNumber < 2) {
             return false;
         }
-        for (int i = 2; i <= Math.sqrt(number); i++) {
-            if (number % i == 0) {
+        for (int i = 2; i <= currentNumber / 2; i++) {
+            if (currentNumber % i == 0) {
                 return false;
             }
         }

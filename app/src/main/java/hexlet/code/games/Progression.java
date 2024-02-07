@@ -1,62 +1,44 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
-import hexlet.code.RandomNum;
-
-import java.util.Scanner;
+import hexlet.code.Engine;
+import java.util.Arrays;
 
 public class Progression {
-    public static void progression() {
-        String name = Cli.getByName();
-        game(name);
+    private static final int QUESTIONS_COUNT = 3;
+    private static final int MIN_NUMBERS_IN_A_ROW = 5;
+    private static final int MAX_NUMBERS_IN_A_ROW = 10;
+    private static final int MIN_INCREMENT = 5;
+    private static final int MAX_INCREMENT = 30;
+    private static final int MAX_RANDOM_NUMBER = 100;
+    private static final String TIP = "What number is missing in the progression?";
+    private static String[][] questionsAnswers = new String[QUESTIONS_COUNT][2];
+    private static final int QUESTION_ROW_NUMBER = 0;
+    private static final int ANSWER_ROW_NUMBER = 1;
+
+    public static void launch() {
+        int numbersInARow = getRandomNumber(MIN_NUMBERS_IN_A_ROW, MAX_NUMBERS_IN_A_ROW);
+        String[] progression = new String[numbersInARow];
+        for (int i = 0; i < QUESTIONS_COUNT; i++) {
+            int hiddenNumberIndex = getRandomNumber(0, numbersInARow - 1);
+            int increment = getRandomNumber(MIN_INCREMENT, MAX_INCREMENT);
+            int currentNumber = getRandomNumber(0, MAX_RANDOM_NUMBER);
+            Arrays.fill(progression, "");
+            questionsAnswers[i][QUESTION_ROW_NUMBER] = "";
+            for (int j = 0; j < numbersInARow; j++) {
+                if (j != hiddenNumberIndex) {
+                    progression[j] = String.valueOf(currentNumber);
+                } else {
+                    progression[j] = "..";
+                    questionsAnswers[i][ANSWER_ROW_NUMBER] = String.valueOf(currentNumber);
+                }
+                currentNumber += increment;
+            }
+            questionsAnswers[i][QUESTION_ROW_NUMBER] = String.join(" ", progression);
+        }
+        Engine.startGame(TIP, questionsAnswers);
     }
 
-    public static void game(String name) {
-        System.out.println("What number is missing in the progression?");
-        Scanner response = new Scanner(System.in);
-        for (int i = 0; i < 3; i++) {
-            int progress = RandomNum.getRandomNum(10);
-            int startProgression = RandomNum.getRandomNum(20);
-            generateProgressionString(progress, startProgression);
-            System.out.println(generateProgressionString(progress, startProgression));
-            System.out.print("Your answer: ");
-            var answer = parseIntOrNull(response.nextLine());
-            if (answer == null) {
-                System.out.println("Let's try again, " + name + "!");
-                return;
-            }
-            if (answer == progress) {
-                System.out.println("Correct!");
-            } else {
-                System.out.println("'" + answer + "'" + " is wrong answer ;(. Correct answer was " + "'" + progress + "'");
-                System.out.println("Let's try again, " + name + "!");
-
-                return;
-            }
-        }
-        System.out.println("Congratulations, " + name + "!");
-    }
-
-    public static Integer parseIntOrNull(String value) {
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
-
-    public static String generateProgressionString(int progression, int start) {
-        int censored = RandomNum.getRandomNum(9);
-        StringBuilder string = new StringBuilder("Question: ");
-        for (int j = 0; j < 10; j++) {
-            if (censored == j) {
-                string.append("..");
-            } else {
-                string.append(start);
-            }
-            string.append(" ");
-            start += progression;
-        }
-        return string.toString();
+    private static int getRandomNumber(int min, int max) {
+        return (int) (Math.random() * (max - min)) + min;
     }
 }

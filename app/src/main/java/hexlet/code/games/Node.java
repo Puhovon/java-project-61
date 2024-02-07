@@ -1,42 +1,26 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
-import hexlet.code.RandomNum;
-
-import java.util.Scanner;
+import hexlet.code.Engine;
 
 public class Node {
-
-    public static void node() {
-        final String name = Cli.getByName();
-        game(name);
-    }
-
-    private static void game(String name) {
-        System.out.println("Find the greatest common divisor of given numbers.");
-        Scanner response = new Scanner(System.in);
-        for (int i = 0; i < 3; i++) {
-            int firstNum = RandomNum.getRandomNum();
-            int secondNum = RandomNum.getRandomNum();
-            System.out.println("Question: " + firstNum + " " + secondNum);
-            int currentResult = searchNod(firstNum, secondNum);
-            if (Integer.parseInt(response.nextLine()) == currentResult) {
-                System.out.println("Correct!");
-            } else {
-                System.out.println("Let's try again, " + name + "!");
-                return;
-            }
+    private static final int QUESTIONS_COUNT = 3;
+    private static final int MAX_RANDOM_NUMBER = 100;
+    private static final String TIP = "Find the greatest common divisor of given numbers.";
+    private static String[][] questionsAnswers = new String[QUESTIONS_COUNT][2];
+    private static final int QUESTION_ROW_NUMBER = 0;
+    private static final int ANSWER_ROW_NUMBER = 1;
+    public static void launch() {
+        for (int i = 0; i < QUESTIONS_COUNT; i++) {
+            int questionNumber1 = (int) (Math.random() * MAX_RANDOM_NUMBER);
+            int questionNumber2 = (int) (Math.random() * MAX_RANDOM_NUMBER);
+            questionsAnswers[i][QUESTION_ROW_NUMBER] = questionNumber1 + " " + questionNumber2;
+            questionsAnswers[i][ANSWER_ROW_NUMBER] = String.valueOf(gcd(questionNumber1, questionNumber2));
         }
-        System.out.println("Congratulations, " + name + "!");
+        Engine.startGame(TIP, questionsAnswers);
     }
 
-    public static int searchNod(int a, int b) {
-        int currentNod = 0;
-        for (int i = 1; i < Math.max(a, b); i++) {
-            if (a % i == 0 && b % i == 0) {
-                currentNod = i;
-            }
-        }
-        return currentNod;
+    private static int gcd(int a, int b) {
+        return a == 0 ? b : gcd(b % a, a);
     }
+
 }
